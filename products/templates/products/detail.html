@@ -39,6 +39,20 @@
         <div class="col-8">
             <p>{{ product.body }}</p>
         </div>
+
+</div>
+<div class='row'>
+    <div class = 'col-2'>
+        <form action="{% url 'likes' product.id %}" method='POST'>
+        {% csrf_token %}
+        {% if user.is_liked %}
+        <button class ='btn btn-danger' type='submit' value='{{ product.id }}'>Dislike</button>
+        {% else %}
+        <button class ='btn btn-primary' type='submit' value='{{ product.id }}'>Likes</button>
+        {% endif %}
+    </form>
+    </div>
+
 </div>
 
 

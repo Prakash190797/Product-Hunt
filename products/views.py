@@ -51,3 +51,11 @@ def upvote(request, product_id):
         product.votes_total +=1
         product.save()
         return redirect('/products/'+ str(product.id))
+
+@login_required(login_url="/accounts/signup")
+def likes(request, product_id):
+    if request.method == 'POST':
+        product = get_object_or_404(Product, pk=product_id)
+        product.likes.add(request.user)
+        product.save()
+        return redirect('/products/'+ str(product.id))
